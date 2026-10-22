@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Изтриване · {{ category.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ category.get_absolute_url }}">← Към категорията</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Потвърждение</p><h1>Да изтрием ли категорията?</h1><p class="lead">Името и описанието ще бъдат премахнати от библиотеката. Действието не може да се отмени.</p></div>
+<form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button danger" type="submit">Изтрий категорията</button><a class="button secondary" href="{{ category.get_absolute_url }}">Запази категорията</a></div></form>
+{% endblock %}

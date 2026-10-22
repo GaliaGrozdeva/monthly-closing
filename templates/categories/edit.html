@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Редактиране · {{ category.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ category.get_absolute_url }}">← Към категорията</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Промяна на категория</p><h1>Редактирай категорията</h1><p class="lead">Промените ще се запазят, когато натиснеш бутона.</p></div>
+<form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit">Запази промените</button><a class="button secondary" href="{{ category.get_absolute_url }}">Отказ</a></div></form>
+{% endblock %}

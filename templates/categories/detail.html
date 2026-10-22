@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ category.name }} · Месечно приключване{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'categories:list' %}">← Всички категории</a></p>
+<div class="page-heading"><p class="eyebrow">Категория</p><h1>{{ category.name }}</h1></div>
+<article class="panel narrow"><h2>Какво включва тази тема</h2><div class="prose">{{ category.description|default:'Все още няма описание. Можеш да го добавиш с бутона „Редактирай“.'|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'categories:edit' category.pk %}">Редактирай</a><a class="button danger-outline" href="{% url 'categories:delete' category.pk %}">Изтрий</a></div></article>
+{% endblock %}

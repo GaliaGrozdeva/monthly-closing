@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Категории · Месечно приключване{% endblock %}
+{% block content %}
+<div class="page-heading heading-with-action"><div><p class="eyebrow">Библиотека</p><h1>Категории</h1><p class="lead">Подреди знанията по теми от ежедневната работа.</p></div><a class="button" href="{% url 'categories:create' %}">+ Нова категория</a></div>
+{% if categories %}
+<div class="list-panel">
+    {% for category in categories %}
+    <article class="list-row"><div><h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2><p>{{ category.description|default:'Все още няма описание.'|truncatechars:180 }}</p></div><a class="button secondary small" href="{{ category.get_absolute_url }}">Отвори<span class="visually-hidden"> {{ category.name }}</span> →</a></article>
+    {% endfor %}
+</div>
+<p class="muted">Общо категории: {{ categories|length }}</p>
+{% else %}
+<div class="empty-state"><h2>Все още няма категории</h2><p>Добави първата тема, например „Банка“.</p><a class="button" href="{% url 'categories:create' %}">Нова категория</a></div>
+{% endif %}
+{% endblock %}

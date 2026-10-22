@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Нова категория · Месечно приключване{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'categories:list' %}">← Всички категории</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Подреди библиотеката</p><h1>Нова категория</h1><p class="lead">Дай име на работната тема и опиши накратко какво включва.</p></div>
+<form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit">Създай категория</button><a class="button secondary" href="{% url 'categories:list' %}">Отказ</a></div></form>
+{% endblock %}

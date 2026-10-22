@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Месечно приключване{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<a class="skip-link" href="#main">Към съдържанието</a>
+{% include 'includes/navigation.html' %}
+<main id="main" class="container">
+    {% if messages %}
+    <div class="messages" aria-live="polite">
+        {% for message in messages %}<p class="message">{{ message }}</p>{% endfor %}
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+{% include 'includes/footer.html' %}
+</body>
+</html>

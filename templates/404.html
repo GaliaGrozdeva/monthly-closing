@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}Страницата не е намерена · Месечно приключване{% endblock %}
+{% block content %}
+<div class="empty-state error-page"><p class="eyebrow">Грешка 404</p><h1>Тази страница не е намерена</h1><p>Адресът може да е сгрешен или записът вече да е изтрит.</p><a class="button" href="{% url 'categories:list' %}">Към категориите</a></div>
+{% endblock %}
