@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ procedure.title }} · Месечно приключване{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ procedure.category.get_absolute_url }}">← {{ procedure.category.name }}</a> · <a href="{% url 'procedures:list' %}">Всички процедури</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Процедура</p><h1>{{ procedure.title }}</h1></div>
+<article class="panel narrow"><h2>Стъпки за изпълнение</h2><div class="prose">{{ procedure.steps|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'procedures:edit' procedure.pk %}">Редактирай</a><a class="button danger-outline" href="{% url 'procedures:delete' procedure.pk %}">Изтрий</a></div></article>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Редактиране · {{ procedure.title }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ procedure.get_absolute_url }}">← Към процедурата</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Промяна на инструкция</p><h1>Редактирай процедурата</h1><p class="lead">Можеш да промениш текста или да преместиш процедурата в друга категория.</p></div>
+<form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit">Запази промените</button><a class="button secondary" href="{{ procedure.get_absolute_url }}">Отказ</a></div></form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Процедури · Месечно приключване{% endblock %}
+{% block content %}
+<div class="page-heading heading-with-action"><div><p class="eyebrow">Работни инструкции</p><h1>Процедури</h1><p class="lead">Конкретните стъпки за всяка повтаряща се задача.</p></div><a class="button" href="{% url 'procedures:create' %}">+ Нова процедура</a></div>
+{% if procedures %}
+<div class="list-panel">
+    {% for procedure in procedures %}
+    <article class="list-row"><div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h2><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h2><p>{{ procedure.steps|truncatechars:180 }}</p></div><a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a></article>
+    {% endfor %}
+</div>
+<p class="muted">Общо процедури: {{ procedures|length }}</p>
+{% else %}
+<div class="empty-state"><h2>Все още няма процедури</h2><p>Избери категория и опиши първата инструкция.</p><a class="button" href="{% url 'procedures:create' %}">Нова процедура</a></div>
+{% endif %}
+{% endblock %}

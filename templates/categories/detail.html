@@ -4,4 +4,17 @@
 <p class="breadcrumb"><a href="{% url 'categories:list' %}">← Всички категории</a></p>
 <div class="page-heading"><p class="eyebrow">Категория</p><h1>{{ category.name }}</h1></div>
 <article class="panel narrow"><h2>Какво включва тази тема</h2><div class="prose">{{ category.description|default:'Все още няма описание. Можеш да го добавиш с бутона „Редактирай“.'|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'categories:edit' category.pk %}">Редактирай</a><a class="button danger-outline" href="{% url 'categories:delete' category.pk %}">Изтрий</a></div></article>
+<section class="procedure-section" aria-labelledby="procedures-heading">
+    <div class="section-heading"><h2 id="procedures-heading">Процедури в тази категория</h2></div>
+    <p><a class="button" href="{% url 'procedures:create' %}?category={{ category.pk }}">+ Нова процедура</a></p>
+    {% if procedures %}
+    <div class="list-panel">
+        {% for procedure in procedures %}
+        <article class="list-row"><div><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3><p>{{ procedure.steps|truncatechars:180 }}</p></div><a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a></article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state"><h3>Добави първата инструкция</h3><p>Всяка процедура има заглавие и текст със стъпките за изпълнение.</p></div>
+    {% endif %}
+</section>
 {% endblock %}

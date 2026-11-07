@@ -3,5 +3,6 @@
 {% block content %}
 <p class="breadcrumb"><a href="{{ category.get_absolute_url }}">← Към категорията</a></p>
 <div class="page-heading narrow"><p class="eyebrow">Потвърждение</p><h1>Да изтрием ли категорията?</h1><p class="lead">Името и описанието ще бъдат премахнати от библиотеката. Действието не може да се отмени.</p></div>
+{% if category.procedures.exists %}<p class="notice narrow">В тази категория има процедури. За да я изтриеш, първо ги премести в друга категория или ги изтрий. <a href="{{ category.get_absolute_url }}">Виж процедурите</a>.</p>{% endif %}
 <form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button danger" type="submit">Изтрий категорията</button><a class="button secondary" href="{{ category.get_absolute_url }}">Запази категорията</a></div></form>
 {% endblock %}

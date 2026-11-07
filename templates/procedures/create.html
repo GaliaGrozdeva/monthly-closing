@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Нова процедура · Месечно приключване{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'procedures:list' %}">← Всички процедури</a></p>
+<div class="page-heading narrow"><p class="eyebrow">Сподели работния опит</p><h1>Нова процедура</h1><p class="lead">Избери категория, дай заглавие и опиши стъпките.</p></div>
+{% if has_categories %}
+<form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit">Създай процедура</button><a class="button secondary" href="{% url 'procedures:list' %}">Отказ</a></div></form>
+{% else %}
+<div class="empty-state narrow"><h2>Първо създай категория</h2><p>Всяка процедура принадлежи на една работна тема, например „Банка“.</p><a class="button" href="{% url 'categories:create' %}">Нова категория</a></div>
+{% endif %}
+{% endblock %}
