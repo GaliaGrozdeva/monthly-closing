@@ -5,6 +5,7 @@
             <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Начало</a>
             <a href="{% url 'categories:list' %}" {% if request.resolver_match.app_name == 'categories' %}aria-current="page"{% endif %}>Категории</a>
             <a href="{% url 'procedures:list' %}" {% if request.resolver_match.app_name == 'procedures' %}aria-current="page"{% endif %}>Процедури</a>
+            <a href="{% url 'tags:list' %}" {% if request.resolver_match.app_name == 'tags' %}aria-current="page"{% endif %}>Етикети</a>
             <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>Как работи</a>
         </nav>
     </div>

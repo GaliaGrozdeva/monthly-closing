@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ procedure.title }} · Месечно приключване{% endblock %}
 {% block content %}
-<p class="breadcrumb"><a href="{{ procedure.category.get_absolute_url }}">← {{ procedure.category.name }}</a> · <a href="{% url 'procedures:list' %}">Всички процедури</a></p>
+<p class="breadcrumb"><a href="{{ procedure.category.get_absolute_url }}" data-shortcut="back" aria-keyshortcuts="Escape">← {{ procedure.category.name }} <kbd>Esc</kbd></a> · <a href="{% url 'procedures:list' %}">Всички процедури</a></p>
 <div class="page-heading narrow"><p class="eyebrow">Процедура</p><h1>{{ procedure.title }}</h1></div>
-<article class="panel narrow"><h2>Стъпки за изпълнение</h2><div class="prose">{{ procedure.steps|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'procedures:edit' procedure.pk %}">Редактирай</a><a class="button danger-outline" href="{% url 'procedures:delete' procedure.pk %}">Изтрий</a></div></article>
+<article class="panel narrow"><h2>Етикети</h2>{% include 'includes/procedure_tags.html' with show_empty=True %}<h2 class="instruction-heading">Стъпки за изпълнение</h2><div class="prose">{{ procedure.steps|linebreaks }}</div><div class="actions"><a class="button secondary" href="{% url 'procedures:create' %}?category={{ procedure.category_id }}" data-shortcut="new" aria-keyshortcuts="F1">Нова процедура <kbd>F1</kbd></a><a class="button" href="{% url 'procedures:edit' procedure.pk %}" data-shortcut="edit" aria-keyshortcuts="Alt+E">Корекция <kbd>Alt+E</kbd></a><a class="button danger-outline" href="{% url 'procedures:delete' procedure.pk %}" data-shortcut="delete" aria-keyshortcuts="Alt+D">Изтрий <kbd>Alt+D</kbd></a></div></article>
 {% endblock %}

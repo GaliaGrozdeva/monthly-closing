@@ -5,3 +5,14 @@
 
 /* Поле за категория и списък с процедури. */
 select{font:inherit;display:block;width:100%;padding:11px 13px;border:1px solid #b8c8bf;border-radius:6px;background:white;color:var(--ink)}select:focus-visible{outline:3px solid #ae7126;outline-offset:4px}.has-error select{border-color:var(--red)}.procedure-section{margin-top:36px}.notice{padding:16px 20px;background:#fff6df;border:1px solid #e1c67c;border-radius:7px}.list-row>div{min-width:0}.list-row .button{flex-shrink:0}.list-row h3{font-size:21px;margin-bottom:7px}.list-row h3 a{color:var(--ink);text-decoration:none}nav{flex-wrap:wrap}
+
+/* Етикети и кратки клавиши. */
+.choice-field{border:0;padding:0;margin:0;min-width:0}
+.choice-field legend{font-weight:600;font-size:14px;margin-bottom:8px;padding:0}
+.tag-choices{display:flex;flex-wrap:wrap;gap:10px 20px}
+.tag-choices label{display:flex;align-items:flex-start;gap:8px;font-size:15px;overflow-wrap:anywhere}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:12px 0 0}
+.tag-link{display:inline-block;border:1px solid #bbcdbd;border-radius:16px;padding:3px 11px;font-size:13px;text-decoration:none;background:#edf5ef;overflow-wrap:anywhere}
+.instruction-heading{margin-top:26px}
+kbd{display:inline-block;font:12px/1.4 "Segoe UI",Arial,sans-serif;border:1px solid currentColor;border-radius:4px;padding:0 5px;white-space:nowrap}
+.form-new-link{margin:4px 0 14px;font-size:14px}

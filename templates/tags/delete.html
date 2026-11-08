@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Изтриване · {{ tag.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ tag.get_absolute_url }}" data-shortcut="back" aria-keyshortcuts="Escape">← Към етикета <kbd>Esc</kbd></a></p>
+<div class="page-heading narrow"><p class="eyebrow">Потвърждение</p><h1>Да изтрием ли етикета?</h1><p class="lead">Ще се премахнат етикетът и връзките му с процедурите. Самите процедури и техните инструкции се запазват.</p></div>
+<p class="notice narrow">Свързани процедури: {{ procedure_count }}.</p>
+<form class="panel form-panel narrow" method="post" novalidate>
+    {% csrf_token %}{% include 'includes/form_fields.html' %}
+    <div class="actions"><button class="button danger" type="submit">Изтрий етикета</button><a class="button secondary" href="{{ tag.get_absolute_url }}">Запази етикета <kbd>Esc</kbd></a></div>
+</form>
+{% endblock %}

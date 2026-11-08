@@ -1,0 +1,9 @@
+{% with selected_tags=procedure.tags.all %}
+{% if selected_tags %}
+<ul class="tag-list" aria-label="Етикети на процедурата">
+    {% for tag in selected_tags %}<li><a class="tag-link" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>{% endfor %}
+</ul>
+{% elif show_empty %}
+<p class="muted">Няма добавени етикети. Можеш да ги избереш от „Корекция“.</p>
+{% endif %}
+{% endwith %}

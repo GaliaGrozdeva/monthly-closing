@@ -1,7 +1,15 @@
 {% if form.non_field_errors %}<div class="error-summary" role="alert">{{ form.non_field_errors }}</div>{% endif %}
 {% for field in form %}
     <div class="form-field{% if field.errors %} has-error{% endif %}">
-        {% if field.field.widget.input_type == 'checkbox' %}
+        {% if field.use_fieldset %}
+            <fieldset class="choice-field" aria-describedby="{{ field.auto_id }}_helptext{% if field.errors %} {{ field.auto_id }}_error{% endif %}">
+                <legend>{{ field.label }}</legend>
+                {{ field }}
+                {% if field.name == 'tags' and not field.field.queryset %}
+                <p class="help-text">Все още няма етикети. Можеш да запазиш процедурата и да ги добавиш по-късно. Създават се от раздел „Етикети“.</p>
+                {% endif %}
+            </fieldset>
+        {% elif field.field.widget.input_type == 'checkbox' %}
             <label class="checkbox-label" for="{{ field.id_for_label }}">{{ field }}<span>{{ field.label }}</span></label>
         {% else %}
             <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required and not field.field.disabled %}<span class="required"> *</span>{% endif %}</label>

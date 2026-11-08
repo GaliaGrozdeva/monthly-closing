@@ -9,6 +9,9 @@ class Procedure(models.Model):
     )
     title = models.CharField("Заглавие", max_length=120)
     steps = models.TextField("Инструкция", max_length=6000)
+    tags = models.ManyToManyField(
+        "tags.Tag", blank=True, related_name="procedures", verbose_name="Етикети",
+    )
 
     class Meta:
         ordering = ["title"]

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Изтриване · {{ procedure.title }}{% endblock %}
 {% block content %}
-<p class="breadcrumb"><a href="{{ procedure.get_absolute_url }}">← Към процедурата</a></p>
+<p class="breadcrumb"><a href="{{ procedure.get_absolute_url }}" data-shortcut="back" aria-keyshortcuts="Escape">← Към процедурата <kbd>Esc</kbd></a></p>
 <div class="page-heading narrow"><p class="eyebrow">Потвърждение</p><h1>Да изтрием ли процедурата?</h1><p class="lead">Заглавието и инструкцията ще бъдат премахнати. Категорията ще остане.</p></div>
 <form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button danger" type="submit">Изтрий процедурата</button><a class="button secondary" href="{{ procedure.get_absolute_url }}">Запази процедурата</a></div></form>
 {% endblock %}

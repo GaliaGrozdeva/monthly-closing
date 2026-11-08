@@ -10,13 +10,13 @@ from .models import Procedure
 
 @require_GET
 def procedure_list(request):
-    procedures = Procedure.objects.select_related("category")
+    procedures = Procedure.objects.select_related("category").prefetch_related("tags")
     return render(request, "procedures/list.html", {"procedures": procedures})
 
 
 @require_GET
 def procedure_detail(request, pk):
-    procedure = get_object_or_404(Procedure.objects.select_related("category"), pk=pk)
+    procedure = get_object_or_404(Procedure.objects.select_related("category").prefetch_related("tags"), pk=pk)
     return render(request, "procedures/detail.html", {"procedure": procedure})
 
 

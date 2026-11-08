@@ -7,4 +7,5 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("categories/", include("categories.urls")),
     path("procedures/", include("procedures.urls")),
+    path("tags/", include("tags.urls")),
 ]

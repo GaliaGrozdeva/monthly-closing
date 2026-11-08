@@ -6,18 +6,21 @@ from .models import Procedure
 class ProcedureForm(forms.ModelForm):
     class Meta:
         model = Procedure
-        fields = ["category", "title", "steps"]
-        labels = {"category": "Категория", "title": "Заглавие на процедурата", "steps": "Инструкция — стъпка по стъпка"}
+        fields = ["category", "title", "tags", "steps"]
+        labels = {"category": "Категория", "title": "Заглавие на процедурата", "steps": "Инструкция — стъпка по стъпка", "tags": "Етикети"}
         help_texts = {
             "category": "Избери темата, към която принадлежи инструкцията.",
             "title": "До 120 знака. Например: Обработка на банково извлечение.",
+            "tags": "По желание. Избери един или няколко етикета с отметки.",
             "steps": "Опиши последователността с обикновен текст. Можеш да номерираш стъпките. До 6000 знака.",
         }
         widgets = {
-            "title": forms.TextInput(attrs={"placeholder": "Например: Обработка на банково извлечение"}),
+            "title": forms.TextInput(attrs={"placeholder": "Например: Обработка на банково извлечение", "autofocus": True}),
+            "tags": forms.CheckboxSelectMultiple(attrs={"class": "tag-choices"}),
             "steps": forms.Textarea(attrs={"rows": 10, "placeholder": "1. Получи извлечението.\n2. Провери периода.\n3. ..."}),
         }
         error_messages = {
+            "tags": {"invalid_choice": "Избери съществуващи етикети.", "invalid_pk_value": "Избери съществуващи етикети.", "invalid_list": "Избери етикетите от списъка."},
             "category": {"required": "Избери категория.", "invalid_choice": "Избери съществуваща категория."},
             "title": {"required": "Въведи заглавие.", "max_length": "Заглавието може да съдържа най-много 120 знака."},
             "steps": {"required": "Въведи инструкцията.", "max_length": "Инструкцията може да съдържа най-много 6000 знака."},

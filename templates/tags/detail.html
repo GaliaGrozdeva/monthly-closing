@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ tag.name }} · Месечно приключване{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'tags:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">← Всички етикети <kbd>Esc</kbd></a></p>
+<div class="page-heading"><p class="eyebrow">Етикет</p><h1>{{ tag.name }}</h1></div>
+<div class="actions">
+    <a class="button" href="{% url 'tags:edit' tag.pk %}" data-shortcut="edit" aria-keyshortcuts="Alt+E">Корекция <kbd>Alt+E</kbd></a>
+    <a class="button secondary" href="{% url 'tags:create' %}" data-shortcut="new" aria-keyshortcuts="F1">Нов етикет <kbd>F1</kbd></a>
+    <a class="button danger-outline" href="{% url 'tags:delete' tag.pk %}" data-shortcut="delete" aria-keyshortcuts="Alt+D">Изтрий <kbd>Alt+D</kbd></a>
+</div>
+<section class="procedure-section" aria-labelledby="tag-procedures-heading">
+    <h2 id="tag-procedures-heading">Процедури с този етикет</h2>
+    {% if procedures %}
+    <div class="list-panel">
+        {% for procedure in procedures %}
+        <article class="list-row">
+            <div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3><p>{{ procedure.steps|truncatechars:180 }}</p></div>
+            <a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state"><h3>Няма свързани процедури</h3><p>Отвори процедура, избери „Корекция“ и постави отметка на този етикет.</p><a class="button secondary" href="{% url 'procedures:list' %}">Към процедурите</a></div>
+    {% endif %}
+</section>
+{% endblock %}

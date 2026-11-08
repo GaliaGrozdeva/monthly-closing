@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Етикети · Месечно приключване{% endblock %}
+{% block content %}
+<div class="page-heading heading-with-action">
+    <div><p class="eyebrow">Допълнителни означения</p><h1>Етикети</h1><p class="lead">Една процедура може да има няколко етикета, например „Месечно“ и „Проверка“.</p></div>
+    <a class="button" href="{% url 'tags:create' %}" data-shortcut="new" aria-keyshortcuts="F1">+ Нов етикет <kbd>F1</kbd></a>
+</div>
+{% if tags %}
+<div class="list-panel">
+    {% for tag in tags %}
+    <article class="list-row">
+        <div><h2><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></h2><p>Свързани процедури: {{ tag.procedure_count }}</p></div>
+        <a class="button secondary small" href="{{ tag.get_absolute_url }}">Отвори →</a>
+    </article>
+    {% endfor %}
+</div>
+<p class="muted">Общо етикети: {{ tags|length }}</p>
+{% else %}
+<div class="empty-state"><h2>Все още няма етикети</h2><p>Създай първия етикет, след това го избери при редактиране на процедура.</p><a class="button" href="{% url 'tags:create' %}">Нов етикет</a></div>
+{% endif %}
+{% endblock %}
