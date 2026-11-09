@@ -16,3 +16,13 @@ select{font:inherit;display:block;width:100%;padding:11px 13px;border:1px solid 
 .instruction-heading{margin-top:26px}
 kbd{display:inline-block;font:12px/1.4 "Segoe UI",Arial,sans-serif;border:1px solid currentColor;border-radius:4px;padding:0 5px;white-space:nowrap}
 .form-new-link{margin:4px 0 14px;font-size:14px}
+
+/* Търсене и филтриране на процедурите. */
+.filter-panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin:8px 0 24px}
+.filter-grid{display:grid;grid-template-columns:1.8fr 1.5fr 1fr 1.2fr;gap:16px}
+.filter-field{min-width:0}
+.filter-field label{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.filter-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.result-count{font-size:14px;color:var(--muted)}
+@media(max-width:950px){.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.filter-panel{padding:20px}.filter-grid{grid-template-columns:minmax(0,1fr)}}

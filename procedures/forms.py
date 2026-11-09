@@ -1,5 +1,9 @@
+from urllib.parse import urlencode
+
 from django import forms
 
+from categories.models import Category
+from tags.models import Tag
 from .models import Procedure
 
 
@@ -46,3 +50,48 @@ class ProcedureDeleteForm(forms.Form):
         label="Потвърждавам изтриването на тази процедура.",
         error_messages={"required": "Отбележи потвърждението, за да изтриеш процедурата."},
     )
+
+class ProcedureFilterForm(forms.Form):
+    q = forms.CharField(
+        label="Търсене", required=False, max_length=100,
+        widget=forms.TextInput(attrs={
+            "placeholder": "Например: банкова сметка",
+            "autofocus": True, "data-shortcut": "search", "aria-keyshortcuts": "F3",
+        }),
+        error_messages={"max_length": "Търсенето може да съдържа най-много 100 знака."},
+    )
+    category = forms.ModelChoiceField(
+        label="Категория", queryset=Category.objects.all(), required=False,
+        empty_label="Всички категории",
+        error_messages={"invalid_choice": "Избери съществуваща категория или всички категории."},
+    )
+    tag = forms.ModelChoiceField(
+        label="Етикет", queryset=Tag.objects.all(), required=False,
+        empty_label="Всички етикети",
+        error_messages={"invalid_choice": "Избери съществуващ етикет или всички етикети."},
+    )
+    sort = forms.ChoiceField(
+        label="Подреждане", required=False,
+        choices=[
+            ("title", "Заглавие: А–Я"),
+            ("title_desc", "Заглавие: Я–А"),
+            ("category", "По категория"),
+            ("newest", "Последно добавени"),
+        ],
+        error_messages={"invalid_choice": "Избери подреждане от списъка."},
+    )
+
+    def clean_sort(self):
+        return self.cleaned_data["sort"] or "title"
+
+    def get_query_string(self):
+        if not self.is_valid():
+            return ""
+        data = self.cleaned_data
+        values = {
+            "q": data["q"],
+            "category": data["category"].pk if data["category"] else "",
+            "tag": data["tag"].pk if data["tag"] else "",
+            "sort": data["sort"],
+        }
+        return urlencode({key: value for key, value in values.items() if value})

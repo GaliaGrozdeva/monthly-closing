@@ -1,14 +1,34 @@
 {% extends 'base.html' %}
 {% block title %}Процедури · Месечно приключване{% endblock %}
 {% block content %}
-<div class="page-heading heading-with-action"><div><p class="eyebrow">Работни инструкции</p><h1>Процедури</h1><p class="lead">Конкретните стъпки за всяка повтаряща се задача.</p></div><a class="button" href="{% url 'procedures:create' %}" data-shortcut="new" aria-keyshortcuts="F1">+ Нова процедура <kbd>F1</kbd></a></div>
+<div class="page-heading heading-with-action"><div><p class="eyebrow">Работни инструкции</p><h1>Процедури</h1><p class="lead">Намери инструкция по думи, категория или етикет.</p></div><a class="button" href="{% url 'procedures:create' %}{% if selected_category %}?category={{ selected_category.pk }}{% endif %}" data-shortcut="new" aria-keyshortcuts="F1">+ Нова процедура <kbd>F1</kbd></a></div>
+<form class="filter-panel" method="get" action="{% url 'procedures:list' %}" role="search" aria-label="Търсене на процедури" novalidate>
+    <div class="filter-grid">
+        {% for field in filter_form %}
+        <div class="filter-field{% if field.errors %} has-error{% endif %}">
+            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.name == 'q' %} <kbd>F3</kbd>{% endif %}</label>
+            {{ field }}
+            {% if field.errors %}<div class="field-errors" id="{{ field.auto_id }}_error" role="alert">{{ field.errors }}</div>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="filter-actions">
+        <button class="button" type="submit">Търси <kbd>Enter</kbd></button>
+        <a class="button secondary" href="{% url 'procedures:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">Изчисти <kbd>Esc</kbd></a>
+    </div>
+    <p class="help-text">Думите се търсят в заглавието и стъпките, независимо от главни и малки букви. Категорията и етикетът се прилагат заедно.</p>
+</form>
+{% if not filter_form.errors %}<p class="result-count" role="status">Намерени: {{ procedures|length }} от {{ total_count }} процедури</p>{% endif %}
 {% if procedures %}
 <div class="list-panel">
     {% for procedure in procedures %}
-    <article class="list-row"><div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h2><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h2><p>{{ procedure.steps|truncatechars:180 }}</p>{% include 'includes/procedure_tags.html' %}</div><a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a></article>
+    <article class="list-row"><div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h2><a href="{{ procedure.get_absolute_url }}?{{ filter_query }}">{{ procedure.title }}</a></h2><p>{{ procedure.steps|truncatechars:180 }}</p>{% include 'includes/procedure_tags.html' %}</div><a class="button secondary small" href="{{ procedure.get_absolute_url }}?{{ filter_query }}">Отвори →</a></article>
     {% endfor %}
 </div>
-<p class="muted">Общо процедури: {{ procedures|length }}</p>
+{% elif filter_form.errors %}
+<div class="empty-state"><h2>Провери филтрите</h2><p>Поправи отбелязаните полета или изчисти избора с Esc.</p></div>
+{% elif total_count %}
+<div class="empty-state"><h2>Няма съвпадения</h2><p>Промени търсените думи, категорията или етикета. С Esc се показват всички процедури.</p></div>
 {% else %}
 <div class="empty-state"><h2>Все още няма процедури</h2><p>Избери категория и опиши първата инструкция.</p><a class="button" href="{% url 'procedures:create' %}" data-shortcut="new" aria-keyshortcuts="F1">Нова процедура <kbd>F1</kbd></a></div>
 {% endif %}

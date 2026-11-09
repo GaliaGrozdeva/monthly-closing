@@ -25,6 +25,7 @@
         if (!event.altKey && !event.ctrlKey && !event.shiftKey) {
             if (event.key === "F1") action = "new";
             if (event.key === "F2") action = "save";
+            if (event.key === "F3") action = "search";
             if (event.key === "Escape") {
                 action = "back";
             }
@@ -38,6 +39,11 @@
         const target = document.querySelector('[data-shortcut="' + action + '"]');
         if (!target || target.disabled || target.hidden) return;
         event.preventDefault();
-        target.click();
+        if (action === "search") {
+            target.focus();
+            target.select();
+        } else {
+            target.click();
+        }
     });
 })();
