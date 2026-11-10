@@ -10,3 +10,5 @@ db.sqlite3-*
 .DS_Store
 Thumbs.db
 backups/
+docs/ETAP_*_PROMPTS.md
+docs/PROGRESS_*.md
