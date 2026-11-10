@@ -16,7 +16,7 @@
         <button class="button" type="submit">Търси <kbd>Enter</kbd></button>
         <a class="button secondary" href="{% url 'procedures:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">Изчисти <kbd>Esc</kbd></a>
     </div>
-    <p class="help-text">Думите се търсят в заглавието и стъпките, независимо от главни и малки букви. Категорията и етикетът се прилагат заедно.</p>
+    <p class="help-text">Търсят се всички думи в заглавието и стъпките, без значение на главни и малки букви.</p>
 </form>
 {% if not filter_form.errors %}<p class="result-count" role="status">Намерени: {{ procedures|length }} от {{ total_count }} процедури</p>{% endif %}
 {% if procedures %}

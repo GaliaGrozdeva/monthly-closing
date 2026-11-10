@@ -1,4 +1,3 @@
-"""Настройки за локална работа с отделна SQLite база."""
 import os
 from pathlib import Path
 

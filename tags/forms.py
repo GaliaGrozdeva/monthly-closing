@@ -8,7 +8,7 @@ class TagForm(forms.ModelForm):
         model = Tag
         fields = ["name"]
         labels = {"name": "Име на етикета"}
-        help_texts = {"name": "До 50 знака. Кратка дума или израз, например Месечно или Проверка."}
+        help_texts = {"name": "До 50 знака."}
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": "Например: Месечно", "autofocus": True}),
         }

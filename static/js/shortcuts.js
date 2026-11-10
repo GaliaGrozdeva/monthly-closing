@@ -1,4 +1,3 @@
-// Клавишите са активни само когато съответното действие е на страницата.
 (() => {
     const saveButton = document.querySelector('[data-shortcut="save"]');
     const form = saveButton ? saveButton.form : null;

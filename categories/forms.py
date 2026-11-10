@@ -9,8 +9,8 @@ class CategoryForm(forms.ModelForm):
         fields = ["name", "description"]
         labels = {"name": "Име на категорията", "description": "Кратко описание"}
         help_texts = {
-            "name": "До 80 знака. Избери име, което лесно ще разпознаваш.",
-            "description": "По желание. Опиши какви инструкции ще събираш тук. До 1000 знака.",
+            "name": "До 80 знака.",
+            "description": "По желание, до 1000 знака.",
         }
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": "Например: Банка", "autofocus": True}),

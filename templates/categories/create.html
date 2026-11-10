@@ -2,7 +2,7 @@
 {% block title %}Нова категория · Месечно приключване{% endblock %}
 {% block content %}
 <p class="breadcrumb"><a href="{% url 'categories:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">← Всички категории <kbd>Esc</kbd></a></p>
-<div class="page-heading narrow"><p class="eyebrow">Подреди библиотеката</p><h1>Нова категория</h1><p class="lead">Дай име на работната тема и опиши накратко какво включва.</p></div>
+<div class="page-heading narrow"><p class="eyebrow">Подреди библиотеката</p><h1>Нова категория</h1></div>
 <p class="form-new-link narrow"><a href="{% url 'categories:create' %}" data-shortcut="new" aria-keyshortcuts="F1">Нова категория <kbd>F1</kbd></a></p>
 <form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit" data-shortcut="save" aria-keyshortcuts="F2">Създай категория <kbd>F2</kbd></button><a class="button secondary" href="{% url 'categories:list' %}">Отказ <kbd>Esc</kbd></a></div></form>
 {% endblock %}

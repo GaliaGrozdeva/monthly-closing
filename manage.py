@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-"""Команди за управление на проекта."""
 import os
 import sys
 

@@ -2,7 +2,7 @@
 {% block title %}Нова процедура · Месечно приключване{% endblock %}
 {% block content %}
 <p class="breadcrumb"><a href="{% url 'procedures:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">← Всички процедури <kbd>Esc</kbd></a></p>
-<div class="page-heading narrow"><p class="eyebrow">Сподели работния опит</p><h1>Нова процедура</h1><p class="lead">Избери категория, дай заглавие, отбележи етикетите и опиши стъпките.</p></div>
+<div class="page-heading narrow"><p class="eyebrow">Сподели работния опит</p><h1>Нова процедура</h1></div>
 {% if has_categories %}
 <p class="form-new-link narrow"><a href="{% url 'procedures:create' %}" data-shortcut="new" aria-keyshortcuts="F1">Нова процедура <kbd>F1</kbd></a></p>
 <form class="panel form-panel narrow" method="post" novalidate>{% csrf_token %}{% include 'includes/form_fields.html' %}<div class="actions"><button class="button" type="submit" data-shortcut="save" aria-keyshortcuts="F2">Създай процедура <kbd>F2</kbd></button><a class="button secondary" href="{% url 'procedures:list' %}">Отказ <kbd>Esc</kbd></a></div></form>

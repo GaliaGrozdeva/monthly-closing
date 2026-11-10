@@ -4,6 +4,6 @@
     {% for tag in selected_tags %}<li><a class="tag-link" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>{% endfor %}
 </ul>
 {% elif show_empty %}
-<p class="muted">Няма добавени етикети. Можеш да ги избереш от „Корекция“.</p>
+<p class="muted">Няма добавени етикети.</p>
 {% endif %}
 {% endwith %}

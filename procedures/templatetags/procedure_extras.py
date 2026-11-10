@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter
 def count_steps(value):
-    """Брой редове с номерирана стъпка, например „1. Провери периода.“."""
+    """Брой номерирани стъпки."""
     count = 0
     for line in str(value or "").splitlines():
         if re.match(r"^\s*\d+[.)]\s+\S", line):

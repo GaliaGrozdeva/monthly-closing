@@ -6,7 +6,7 @@
                 <legend>{{ field.label }}</legend>
                 {{ field }}
                 {% if field.name == 'tags' and not field.field.queryset %}
-                <p class="help-text">Все още няма етикети. Можеш да запазиш процедурата и да ги добавиш по-късно. Създават се от раздел „Етикети“.</p>
+                <p class="help-text">Все още няма етикети. Добавят се от раздел „Етикети“.</p>
                 {% endif %}
             </fieldset>
         {% elif field.field.widget.input_type == 'checkbox' %}
