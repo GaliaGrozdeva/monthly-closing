@@ -14,7 +14,7 @@
     <div class="list-panel">
         {% for procedure in procedures %}
         <article class="list-row">
-            <div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3><p>{{ procedure.steps|truncatechars:180 }}</p></div>
+            <div><p class="card-label"><a href="{{ procedure.category.get_absolute_url }}">{{ procedure.category.name }}</a></p><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3>{% include 'includes/procedure_step_count.html' %}<p>{{ procedure.steps|truncatechars:180 }}</p></div>
             <a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a>
         </article>
         {% endfor %}

@@ -72,7 +72,10 @@ class ProcedureWorkflowTests(TestCase):
 
     def test_empty_library_guides_user_to_create_category(self):
         Category.objects.all().delete()
-        self.assertContains(self.client.get(self.create_url), "Първо създай категория")
+        response = self.client.get(self.create_url)
+        self.assertContains(response, "Първо създай категория")
+        self.assertContains(response, 'data-shortcut="new"', count=1)
+        self.assertContains(response, f'href="{reverse("categories:create")}" data-shortcut="new"')
         self.assertContains(self.client.get(reverse("procedures:list")), "Все още няма процедури")
         self.client.post(self.create_url, self.data())
         self.assertEqual(Procedure.objects.count(), 0)

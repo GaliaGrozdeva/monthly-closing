@@ -14,6 +14,7 @@ select{font:inherit;display:block;width:100%;padding:11px 13px;border:1px solid 
 .tag-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:12px 0 0}
 .tag-link{display:inline-block;border:1px solid #bbcdbd;border-radius:16px;padding:3px 11px;font-size:13px;text-decoration:none;background:#edf5ef;overflow-wrap:anywhere}
 .instruction-heading{margin-top:26px}
+.step-count,.list-row .step-count{font-size:13px;color:var(--muted);margin:5px 0 12px}
 kbd{display:inline-block;font:12px/1.4 "Segoe UI",Arial,sans-serif;border:1px solid currentColor;border-radius:4px;padding:0 5px;white-space:nowrap}
 .form-new-link{margin:4px 0 14px;font-size:14px}
 

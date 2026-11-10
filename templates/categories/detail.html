@@ -3,14 +3,14 @@
 {% block content %}
 <p class="breadcrumb"><a href="{% url 'categories:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">← Всички категории <kbd>Esc</kbd></a></p>
 <div class="page-heading"><p class="eyebrow">Категория</p><h1>{{ category.name }}</h1></div>
-<article class="panel narrow"><h2>Какво включва тази тема</h2><div class="prose">{{ category.description|default:'Все още няма описание. Можеш да го добавиш с бутона „Редактирай“.'|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'categories:edit' category.pk %}" data-shortcut="edit" aria-keyshortcuts="Alt+E">Корекция <kbd>Alt+E</kbd></a><a class="button danger-outline" href="{% url 'categories:delete' category.pk %}" data-shortcut="delete" aria-keyshortcuts="Alt+D">Изтрий <kbd>Alt+D</kbd></a></div></article>
+<article class="panel narrow"><h2>Какво включва тази тема</h2><div class="prose">{{ category.description|default:'Все още няма описание. Можеш да го добавиш с бутона „Корекция“.'|linebreaks }}</div><div class="actions"><a class="button" href="{% url 'categories:edit' category.pk %}" data-shortcut="edit" aria-keyshortcuts="Alt+E">Корекция <kbd>Alt+E</kbd></a><a class="button danger-outline" href="{% url 'categories:delete' category.pk %}" data-shortcut="delete" aria-keyshortcuts="Alt+D">Изтрий <kbd>Alt+D</kbd></a></div></article>
 <section class="procedure-section" aria-labelledby="procedures-heading">
     <div class="section-heading"><h2 id="procedures-heading">Процедури в тази категория</h2></div>
     <p><a class="button" href="{% url 'procedures:create' %}?category={{ category.pk }}" data-shortcut="new" aria-keyshortcuts="F1">+ Нова процедура <kbd>F1</kbd></a></p>
     {% if procedures %}
     <div class="list-panel">
         {% for procedure in procedures %}
-        <article class="list-row"><div><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3><p>{{ procedure.steps|truncatechars:180 }}</p></div><a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a></article>
+        <article class="list-row"><div><h3><a href="{{ procedure.get_absolute_url }}">{{ procedure.title }}</a></h3>{% include 'includes/procedure_step_count.html' %}<p>{{ procedure.steps|truncatechars:180 }}</p></div><a class="button secondary small" href="{{ procedure.get_absolute_url }}">Отвори →</a></article>
         {% endfor %}
     </div>
     {% else %}

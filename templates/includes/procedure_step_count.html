@@ -1,0 +1,4 @@
+{% load procedure_extras %}
+{% with count=procedure.steps|count_steps %}
+{% if count %}<p class="step-count" title="Брой номерирани стъпки в инструкцията">{{ count }} стъпк{{ count|pluralize:"а,и" }}</p>{% endif %}
+{% endwith %}
