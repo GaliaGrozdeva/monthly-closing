@@ -18,7 +18,7 @@ Python 3.13, Django 6.1.3 и SQLite. Интерфейсът е на българ
 
 ## Стартиране на Windows
 
-Необходим е инсталиран Python 3.13.
+Необходими са Git и Python 3.13.
 
 ```powershell
 git clone https://github.com/GaliaGrozdeva/monthly-closing.git

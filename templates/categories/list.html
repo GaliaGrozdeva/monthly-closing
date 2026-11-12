@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Категории · Месечно приключване{% endblock %}
 {% block content %}
-<div class="page-heading heading-with-action"><div><p class="eyebrow">Библиотека</p><h1>Категории</h1><p class="lead">Подреди знанията по теми от ежедневната работа.</p></div><a class="button" href="{% url 'categories:create' %}" data-shortcut="new" aria-keyshortcuts="F1">+ Нова категория <kbd>F1</kbd></a></div>
+<div class="page-heading heading-with-action"><div><p class="eyebrow">Библиотека</p><h1>Категории</h1></div><a class="button" href="{% url 'categories:create' %}" data-shortcut="new" aria-keyshortcuts="F1">+ Нова категория <kbd>F1</kbd></a></div>
 {% if categories %}
 <div class="list-panel">
     {% for category in categories %}

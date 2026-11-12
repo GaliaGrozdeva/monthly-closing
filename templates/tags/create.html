@@ -2,7 +2,7 @@
 {% block title %}Нов етикет · Месечно приключване{% endblock %}
 {% block content %}
 <p class="breadcrumb"><a href="{% url 'tags:list' %}" data-shortcut="back" aria-keyshortcuts="Escape">← Всички етикети <kbd>Esc</kbd></a></p>
-<div class="page-heading narrow"><p class="eyebrow">Означи работните инструкции</p><h1>Нов етикет</h1></div>
+<div class="page-heading narrow"><p class="eyebrow">Етикети</p><h1>Нов етикет</h1></div>
 <p class="form-new-link narrow"><a href="{% url 'tags:create' %}" data-shortcut="new" aria-keyshortcuts="F1">Нов етикет <kbd>F1</kbd></a></p>
 <form class="panel form-panel narrow" method="post" novalidate>
     {% csrf_token %}{% include 'includes/form_fields.html' %}
